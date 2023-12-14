@@ -1,16 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using PharmacyAPI.Data;
-using PharmacyAPI.Models;
 using PharmacyAPI.Repository;
 using PharmacyAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddTransient(typeof(IEntityRepository<>), typeof(EntityRepository<>));
-builder.Services.AddScoped<DbContext, PharmacyContext>();
 
-//builder.Services.AddTransient<IEntityRepository<Pharmacy>, EntityRepository>();
+builder.Services.AddScoped<DbContext, PharmacyContext>();
 builder.Services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
 builder.Services.AddScoped<IPharmacyService, PharmacyService>();
 builder.Services.AddDbContext<PharmacyContext>(options =>

@@ -48,12 +48,12 @@ namespace PharmacyAPI.Controllers
             }
         }
 
-        [HttpPatch("{Id}", Name = "UpdatePharmacy")]
-        public async Task<IActionResult> Update(int Id, [FromBody] Pharmacy pharmacy)
+        [HttpPatch(Name = "UpdatePharmacy")]
+        public async Task<IActionResult> Update([FromBody] Pharmacy pharmacy)
         {
             try
             {
-                var updated = await _pharmacyService.Update(Id, pharmacy);
+                var updated = await _pharmacyService.Update(pharmacy.Id, pharmacy);
                 if(!updated)
                     return BadRequest();
                 else
